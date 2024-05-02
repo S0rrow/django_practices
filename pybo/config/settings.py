@@ -27,7 +27,7 @@ SECRET_KEY = keys['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1",]
+ALLOWED_HOSTS = ["127.0.0.1", "192.168.45.250", "server.local"]
 
 SECURE_REFERRER_POLICY = "no-referrer-when-downgrade"
 # Application definition
