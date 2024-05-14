@@ -1,9 +1,32 @@
-{%if question_list %}
-    <ul>
+{% extends 'base.html' %}
+{% block content %}
+<div class="container my-3">
+    <table class="table">
+        <thead>
+        <tr class="thead-dark">
+            <th>Number</th>
+            <th>Title</th>
+            <th>Created Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if question_list %}
         {% for question in question_list %}
-        <li> <a href="{% url 'main:detail' question.id %}">{{question.subject}}</a> </li>
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>
+                <a href="{% url 'main:detail' question.id %}">{{ question.subject }}</a>
+            </td>
+            <td>{{ question.create_date }}</td>
+        </tr>
         {% endfor %}
-    </ul>
-{% else %}
-    <p> No Data </p>
-{% endif%}
+        {% else %}
+        <tr>
+            <td colspan="3">No Data.</td>
+        </tr>
+        {% endif %}
+        </tbody>
+    </table>
+    <a href="{% url 'main:question_create' %}" class="btn btn-primary">Ask Question</a>
+</div>
+{% endblock %}

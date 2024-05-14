@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from .models import Question
+from .forms import QuestionForm, AnswerForm
 from django.utils import timezone
 # Create your views here.
 
@@ -18,5 +19,27 @@ def detail(request, question_id):
 
 def answer_create(request, question_id):
     q = get_object_or_404(Question, pk=question_id)
-    q.answer_set.create(content=request.POST.get('content'), create_date=timezone.now())
-    return redirect('main:detail', question_id=q.id)
+    if request.method=="POST":
+        form = AnswerForm(request.POST)
+        if form.is_valid():
+            answer = form.save(commit=False)
+            answer.create_date = timezone.now()
+            answer.question = q
+            answer.save()
+            return redirect('main:detail', question_id=q.id)
+    else:
+        form = AnswerForm()
+    context = {"question":q, "form":form}
+    return render(request, 'main/question_detail.html', context)
+
+def question_create(request):
+    if request.method=='POST':
+        form = QuestionForm(request.POST)
+        if form.is_valid():
+            question = form.save(commit=False)
+            question.create_date = timezone.now()
+            question.save()
+            return redirect('main:index')
+    else:
+        form = QuestionForm()
+    return render(request, 'main/question_form.html', {'form':form})
