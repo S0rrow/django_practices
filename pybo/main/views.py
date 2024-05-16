@@ -3,14 +3,18 @@ from django.http import HttpResponse
 from .models import Question
 from .forms import QuestionForm, AnswerForm
 from django.utils import timezone
+from django.core.paginator import Paginator
 # Create your views here.
 
 def index(request):
+    page = request.GET.get('page', '1')
     question_list = Question.objects.order_by('-create_date')
+    paginator = Paginator(question_list, 10)
+    page_obj = paginator.get_page(page)
     return render(
         request=request,
         template_name='main/question_list.html',
-        context={'question_list' : question_list}
+        context={'question_list' : page_obj}
     )
     
 def detail(request, question_id):
@@ -43,3 +47,5 @@ def question_create(request):
     else:
         form = QuestionForm()
     return render(request, 'main/question_form.html', {'form':form})
+
+
