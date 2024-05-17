@@ -4,6 +4,7 @@ from .models import Question
 from .forms import QuestionForm, AnswerForm
 from django.utils import timezone
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def index(request):
@@ -16,7 +17,8 @@ def index(request):
         template_name='main/question_list.html',
         context={'question_list' : page_obj}
     )
-    
+
+@login_required(login_url='common:login')
 def detail(request, question_id):
     q = get_object_or_404(Question, pk=question_id)
     return render(request, 'main/question_detail.html', {'question':q})
