@@ -25,7 +25,7 @@ with open('./keys.json', 'r') as f:
 SECRET_KEY = keys['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["server.local"]
 
@@ -125,14 +125,14 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-STATIC_ROOT = ''
-
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    #BASE_DIR / 'static',
-    os.path.join(BASE_DIR, 'static/'),
+    BASE_DIR / "static",
 ]
+
+# STATIC_ROOT = BASE_DIR / "static/"
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
