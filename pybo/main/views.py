@@ -38,6 +38,7 @@ def answer_create(request, question_id):
     context = {"question":q, "form":form}
     return render(request, 'main/question_detail.html', context)
 
+@login_required(login_url='common:login')
 def question_create(request):
     if request.method=='POST':
         form = QuestionForm(request.POST)
