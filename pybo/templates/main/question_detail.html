@@ -21,6 +21,14 @@
                 <div class="badge badge-light p-2">
                     {{ answer.create_date }}
                 </div>
+                <div>
+                    {% if answer.is_positive == 1 %}
+                        <p style="display:inline">😄</p> 
+                    {% else %}
+                        <p style="display:inline">😡</p> 
+                    {% endif %}
+                        ({{answer.probability}}<p style="display:inline">&#x25</p>)
+                </div>
             </div>
         </div>
     </div>

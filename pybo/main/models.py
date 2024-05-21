@@ -13,6 +13,7 @@ class Answer(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     content = models.TextField()
     create_date = models.DateTimeField()
-    
+    is_positive = models.IntegerField()
+    probability = models.FloatField()
     def __str__(self):
         return self.content
