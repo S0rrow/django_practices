@@ -1,3 +1,5 @@
 dvenv/
 *.json
-pybo/main/__pycache__
+*.pyc
+*.log
+*.out
