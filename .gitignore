@@ -1,5 +1,6 @@
-dvenv/
+venv/
 *.json
 *.pyc
 *.log
 *.out
+pybo/main/migrations

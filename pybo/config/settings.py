@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'main.apps.MainConfig',
     'django_extensions',
     'common.apps.CommonConfig',
+    'chart.apps.ChartConfig',
 ]
 
 MIDDLEWARE = [
