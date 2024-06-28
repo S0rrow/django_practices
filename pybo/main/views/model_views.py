@@ -13,7 +13,7 @@ model = load_model("./models/best_model.keras")
 print (">> LABEL LOAD")
 with open("./models/tokenizer.pickle", "rb") as f:
     tokenizer = pickle.load(f)
-    
+
 def predict_sentence_positivity(sentence:str)->dict:
     okt = Okt()
     stopwords = ['의','가','이','은','들','는','좀','잘','걍','과','도','를','으로','자','에','와','한','하다']
